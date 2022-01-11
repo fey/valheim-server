@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  valheim:
+    image: lloesche/valheim-server
+    volumes:
+      - ./config:/config
+      - ./data:/opt/valheim
+    ports:
+      - "2456-2457:2456-2457/udp"
+    cap_add:
+      - SYS_NICE
+    environment:
+      SERVER_NAME: "My World"
+      WORLD_NAME: jopa
+      SERVER_PASS: secret
+      SERVER_PUBLIC: "false"
