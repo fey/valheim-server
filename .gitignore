@@ -1,4 +1,4 @@
 config/*
-!config/.gitkeep
 data/*
-!data/.gitkeep
+!config/.gitkeep
+!config/worlds/.gitkeep
