@@ -1,0 +1,30 @@
+---
+- name: Update apt cache
+  hosts: gameservers
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Setup required packages
+      apt:
+        name:
+          - git
+          - make
+        state: present
+
+    - name: setup pip
+      include_role:
+        name: geerlingguy.pip
+
+- name: deploy server
+  hosts: gameservers
+  tasks:
+    - name: Git checkout
+      ansible.builtin.git:
+        repo: https://github.com/fey/valheim-server.git
+        dest: /root/valheim-server
+
+    - name: Create and start services
+      community.docker.docker_compose:
+        project_src: /root/valheim-server
