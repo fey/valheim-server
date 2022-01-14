@@ -1,0 +1,23 @@
+name: Backup Valheim worlds
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          playbook: backup_worlds.yml
+          key: ${{secrets.SSH_PRIVATE_KEY}}
+          # requirements: requirements.yml
+          options: |
+            --inventory .hosts
+            --limit group1
+            --extra-vars hello=there
+            --verbose

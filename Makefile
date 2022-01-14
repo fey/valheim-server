@@ -24,6 +24,9 @@ uptime:
 deploy:
 	ansible-playbook playbook.yml -i inventory.ini
 
+backup:
+	ansible-playbook backup_world.yml -i inventory.ini
+
 create-vault:
 	ansible-vault create $(FILE) --vault-password-file vault-password
 

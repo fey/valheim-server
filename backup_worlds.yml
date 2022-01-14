@@ -1,0 +1,23 @@
+---
+
+- name: backup worlds
+  hosts: gameservers
+  gather_facts: no
+  tasks:
+    - name: Get files in a folder
+      find:
+        paths: /root/valheim-server/config/backups/
+      register: found_files
+
+    - name: Get latest file
+      set_fact:
+        latest_file: "{{ found_files.files | sort(attribute='mtime',reverse=true) | first }}"
+
+    - name: debug
+      debug:
+        var: latest_file['path']
+    - name: Store file last backup
+      ansible.builtin.fetch:
+        src: "{{ latest_file['path'] }}"
+        dest: config/backups/{{ latest_file['path'] | basename }}
+        flat: yes
