@@ -11,7 +11,7 @@ services:
     cap_add:
       - SYS_NICE
     environment:
-      SERVER_NAME: "My World"
-      WORLD_NAME: jopa
-      SERVER_PASS: secret
+      SERVER_NAME: "DzencotWorld"
+      WORLD_NAME: New11
+      SERVER_PASS: dzencot
       SERVER_PUBLIC: "false"
