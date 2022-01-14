@@ -18,3 +18,10 @@ jobs:
           # requirements: requirements.yml
           options: |
             --inventory inventory.ini
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: backup.zip
+          path: |
+            config/backups
