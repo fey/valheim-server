@@ -37,4 +37,4 @@
     - name: Create and start services
       community.docker.docker_compose:
         project_src: /root/valheim-server
-        recreate: yes
+        recreate: always
