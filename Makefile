@@ -1,6 +1,9 @@
 start:
 	docker-compose up --abort-on-container-exit
 
+compose-logs:
+	docker-compose logs -f valheim
+
 setup: prepare-vault-password install
 
 prepare-vault-password:
