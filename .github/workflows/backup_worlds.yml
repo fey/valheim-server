@@ -1,6 +1,8 @@
 name: Backup Valheim worlds
 
 on:
+  schedule:
+    - cron: '*/15 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -23,5 +25,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: backup
-          path: |
-            config/backups
+          path: config/backups
+          retention-days: 5
