@@ -1,5 +1,5 @@
 ---
-- name: Update apt cache
+- name: Setup required packages
   hosts: gameservers
   tasks:
     - name: Update apt cache
@@ -17,14 +17,24 @@
       include_role:
         name: geerlingguy.pip
 
-- name: deploy server
+
+- name: Copy worlds
   hosts: gameservers
   tasks:
-    - name: Git checkout
+    - name: Checkout repo
       ansible.builtin.git:
         repo: https://github.com/fey/valheim-server.git
         dest: /root/valheim-server
 
+    - name: Synchronization without any --archive options enabled
+      ansible.posix.synchronize:
+        src: worlds/
+        dest: /root/valheim-server/config/worlds
+
+- name: deploy server
+  hosts: gameservers
+  tasks:
     - name: Create and start services
       community.docker.docker_compose:
         project_src: /root/valheim-server
+        recreate: yes
