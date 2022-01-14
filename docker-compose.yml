@@ -15,3 +15,5 @@ services:
       WORLD_NAME: New11
       SERVER_PASS: dzencot
       SERVER_PUBLIC: "false"
+    restart: always
+    stop_grace_period: 2m
