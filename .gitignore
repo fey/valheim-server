@@ -2,3 +2,5 @@ config/*
 data/*
 !config/.gitkeep
 !config/worlds/.gitkeep
+worlds
+!worlds/.gitkeep
